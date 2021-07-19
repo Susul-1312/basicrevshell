@@ -1,5 +1,11 @@
+const fs = require("fs");
+
 const http = require("http").createServer((req, res) => {
-	res.end("not yet ready");
+	if (req.url == "/style.css") {
+		res.end(fs.readFileSync(__dirname + "/web/style.css"));
+		return;
+	}
+	res.end(fs.readFileSync(__dirname + "/web/index.html"));
 })
 
 const { Server } = require("ws");
